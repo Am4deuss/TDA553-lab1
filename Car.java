@@ -39,6 +39,14 @@ public class Car implements Movable {
         return color;
     }
 
+    public double getX(){
+        return x;
+    }
+
+    public double getY(){
+        return y;
+    }
+
     public void setColor(Color clr){
         color = clr;
     }
@@ -76,30 +84,30 @@ public class Car implements Movable {
     @Override
     public void move() {
         switch(current_dir){
-            case N: y += currentSpeed;
-            case E: x += currentSpeed;
-            case S: y -= currentSpeed;
-            case W: x -= currentSpeed;
+            case N: y += currentSpeed; break;
+            case E: x += currentSpeed; break;
+            case S: y -= currentSpeed; break;
+            case W: x -= currentSpeed; break;
         }
     }
 
     @Override
     public void turnLeft() {
         switch(current_dir){
-            case N: current_dir = Directions.W;
-            case E: current_dir = Directions.N;
-            case S: current_dir = Directions.E;
-            case W: current_dir = Directions.S;
+            case N: current_dir = Directions.W; break;
+            case E: current_dir = Directions.N; break;
+            case S: current_dir = Directions.E; break;
+            case W: current_dir = Directions.S; break;
         }
     }
 
     @Override
     public void turnRight() {
         switch(current_dir){
-            case N: current_dir = Directions.E;
-            case E: current_dir = Directions.S;
-            case S: current_dir = Directions.W;
-            case W: current_dir = Directions.N;
+            case N: current_dir = Directions.E; break;
+            case E: current_dir = Directions.S; break;
+            case S: current_dir = Directions.W; break;
+            case W: current_dir = Directions.N; break;
         }
     }
 }
