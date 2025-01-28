@@ -64,21 +64,31 @@ public class Car implements Movable {
     }
 
     protected void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
-    protected void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    protected void decrementSpeed(double amount) {
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
+    public boolean gas(double amount){
+        boolean correctRange = true;
+        if(amount >= 0 && amount <= 1) {
+            incrementSpeed(amount);
+        } else{
+            correctRange = false;
+        }
+        return correctRange;
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    public boolean brake(double amount){
+        boolean correctRange = true;
+        if(amount >= 0 && amount <= 1) {
+            decrementSpeed(amount);
+        } else{
+            correctRange = false;
+        }
+        return correctRange;
     }
 
     @Override

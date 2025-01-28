@@ -34,4 +34,16 @@ class CarTest {
         assertEquals(-0.1, kingenbil.getX());
         assertEquals(0.1, kingenbil.getY());
     }
+
+    @Test
+    void testGas() {
+        Volvo240 kingenbil = new Volvo240();
+        kingenbil.startEngine();
+        double testAmount = 1.1;
+        assertFalse(kingenbil.gas(testAmount));
+        testAmount = 1.0;
+        assertTrue(kingenbil.gas(testAmount));
+        testAmount = -0.5;
+        assertFalse(kingenbil.gas(testAmount));
+    }
 }
