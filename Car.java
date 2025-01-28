@@ -9,10 +9,18 @@ public class Car implements Movable {
     protected String modelName; // The car model name
     protected double x; // X-coordinate
     protected double y; // Y-coordinate
+    protected enum Directions{
+        N,
+        E,
+        S,
+        W
+    }; // Directions (to be used by switch)
+    protected Directions current_dir;
 
     public Car(){
         x = 0;
         y = 0;
+        current_dir = Directions.N;
     }
 
     public int getNrDoors(){
@@ -67,16 +75,31 @@ public class Car implements Movable {
 
     @Override
     public void move() {
-
+        switch(current_dir){
+            case N: y += currentSpeed;
+            case E: x += currentSpeed;
+            case S: y -= currentSpeed;
+            case W: x -= currentSpeed;
+        }
     }
 
     @Override
     public void turnLeft() {
-
+        switch(current_dir){
+            case N: current_dir = Directions.W;
+            case E: current_dir = Directions.N;
+            case S: current_dir = Directions.E;
+            case W: current_dir = Directions.S;
+        }
     }
 
     @Override
     public void turnRight() {
-
+        switch(current_dir){
+            case N: current_dir = Directions.E;
+            case E: current_dir = Directions.S;
+            case S: current_dir = Directions.W;
+            case W: current_dir = Directions.N;
+        }
     }
 }

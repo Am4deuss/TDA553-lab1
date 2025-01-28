@@ -22,19 +22,19 @@ public class Saab95 extends Car{
 	    turboOn = false;
     }
 
-    @Override
+    @Override // Overrides method in super-class (Car)
     protected double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
         return enginePower * 0.01 * turbo;
     }
 
-    @Override
+    @Override // Overrides method in super-class (Car)
     protected void incrementSpeed(double amount){
         currentSpeed = getCurrentSpeed() + speedFactor() * amount;
     }
 
-    @Override
+    @Override // Overrides method in super-class (Car)
     protected void decrementSpeed(double amount){
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
