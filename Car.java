@@ -9,6 +9,7 @@ public abstract class Car implements Movable {
     protected String modelName; // The car model name
     protected double x; // X-coordinate
     protected double y; // Y-coordinate
+
     protected enum Directions{
         N,
         E,
@@ -18,6 +19,7 @@ public abstract class Car implements Movable {
     protected Directions current_dir;
 
     public Car(){
+        // in meters
         x = 0;
         y = 0;
         current_dir = Directions.N;
@@ -45,6 +47,11 @@ public abstract class Car implements Movable {
 
     public double getY(){
         return y;
+    }
+
+    protected void updatePos(double xCar, double yCar) {
+        this.x = xCar;
+        this.y = yCar;
     }
 
     public void setColor(Color clr){
