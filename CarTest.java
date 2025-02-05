@@ -46,4 +46,27 @@ class CarTest {
         testAmount = -0.5;
         assertFalse(kingenbil.gas(testAmount));
     }
+
+    @Test
+    void testScaniaFlatbed() {
+        Scania storbil = new Scania();
+        assertEquals(0, storbil.getFlatbedAngle());
+    }
+
+    @Test
+    void testScaniaFlatbedRaiseLower() {
+        Scania storarebil = new Scania();
+        storarebil.setFlatbedAngle(71);
+        assertNotEquals(71, storarebil.getFlatbedAngle());
+        assertEquals(0, storarebil.getFlatbedAngle());
+        storarebil.setFlatbedAngle(70);
+        assertEquals(70, storarebil.getFlatbedAngle());
+        storarebil.setFlatbedAngle(10);
+        assertEquals(10, storarebil.getFlatbedAngle());
+        storarebil.setFlatbedAngle(-10);
+        assertNotEquals(-10, storarebil.getFlatbedAngle());
+        storarebil.setFlatbedAngle(0);
+        assertEquals(0, storarebil.getFlatbedAngle());
+    }
+
 }
