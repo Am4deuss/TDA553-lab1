@@ -19,8 +19,12 @@ public class Truck extends Car {
         stopEngine();
     }
 
+    public int getFlatbedAngle() {
+        return this.flatbed.getFlatbedAngle();
+    }
+
     public void setFlatbed(){ // works a toggle flatbed
-        if(getCurrentSpeed() == 0) {
+        if(getCurrentSpeed() == 0.1) {
             if(this.flatbed.getFlatbedAngle() == 0){
                 this.flatbed.setFlatbedAngle(1);
             } else {
@@ -31,14 +35,14 @@ public class Truck extends Car {
     }
 
     public void loadCar(Car currentCar){ // can only load when x,y is in 1m range
-        if(this.flatbed.getFlatbedAngle() == 1 && cars.size() < maxCarAmount && checkCarDistance(currentCar) && !(currentCar instanceof Truck)) {
+        if(this.flatbed.getFlatbedAngle() == 1 && cars.size() < maxCarAmount && checkCarDistance(currentCar) && !(currentCar instanceof Truck) && !(cars.contains(currentCar))) {
             cars.push(currentCar);
             currentCar.updatePos(this.x, this.y);
         }
     }
 
     protected boolean checkCarDistance(Car currentCar){
-        if(Math.abs(currentCar.getX() - this.x) <= 1 && Math.abs(currentCar.getY() - this.y) <= 1){
+        if((Math.abs(currentCar.getX() - this.x) <= 1) && (Math.abs(currentCar.getY() - this.y) <= 1)){
             return true;
         } else {
             return false;
@@ -50,6 +54,10 @@ public class Truck extends Car {
             Car currentCar = cars.pop();
             currentCar.updatePos(this.x + 1, this.y + 1); //sets the car 1m from the truck
         }
+    }
+
+    public int getFlatbedCarAmount(){
+        return cars.size();
     }
 
     @Override
@@ -64,15 +72,6 @@ public class Truck extends Car {
             for (Car currentCar : cars) { // updates loaded-cars positions
                 currentCar.updatePos(this.x, this.y);
             }
-        }
-    }
-
-    @Override
-    public void startEngine(){
-        if(this.flatbed.getFlatbedAngle() == 0) {
-            currentSpeed = 0.1;
-        } else {
-            currentSpeed = 0.0;
         }
     }
 

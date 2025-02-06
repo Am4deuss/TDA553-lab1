@@ -19,7 +19,7 @@ public class Scania extends Car {
     }
 
     public void setFlatbedAngle(int amount) {
-        if(getCurrentSpeed() == 0) {
+        if(getCurrentSpeed() == 0.1) {
             this.flatbed.setFlatbedAngle(amount);
         }
     }
@@ -33,15 +33,6 @@ public class Scania extends Car {
                 case S: y -= currentSpeed; break;
                 case W: x -= currentSpeed; break;
             }
-        }
-    }
-
-    @Override
-    public void startEngine(){
-        if(this.flatbed.getFlatbedAngle() == 0) {
-            currentSpeed = 0.1;
-        } else {
-            currentSpeed = 0.0;
         }
     }
 
