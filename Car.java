@@ -49,6 +49,10 @@ public abstract class Car implements Movable {
         return y;
     }
 
+    public String getCarModel() {
+        return modelName;
+    }
+
     protected void updatePos(double xCar, double yCar) {
         this.x = xCar;
         this.y = yCar;
