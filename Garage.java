@@ -5,18 +5,22 @@ public class Garage {
     public int maxVehicles;
     public String[] vehicleTypes;
 
-    public void Garage(int maxVehicles){
+    public Garage(int maxVehicles){
         vehiclesStored = new ArrayList<>();
         this.maxVehicles = maxVehicles;
     }
 
-    public void Garage(int maxVehicles, String[] acceptedModels) {
+    public Garage(int maxVehicles, String[] acceptedModels) {
         vehiclesStored = new ArrayList<>();
         this.maxVehicles = maxVehicles;
         vehicleTypes = acceptedModels;
     }
 
-    public Car[] getVehicleTypes() {
+    public ArrayList<Car> getVehiclesStored() {
+        return vehiclesStored;
+    }
+
+    public String[] getVehicleTypes() {
         return vehicleTypes;
     }
 
@@ -24,23 +28,32 @@ public class Garage {
         // check if instance of the right type with accepted Vehicle()
         if(isAccepted(vehicle)) {
             vehiclesStored.add(vehicle);
+        } else {
+            throw new IllegalArgumentException("Wrong car type :P");
         }
     }
 
+    Car removeVehicle(int vehicleIndex) {
+       Car removedCar = null;
+       if(vehicleIndex != 0 && vehicleIndex < vehiclesStored.size()) {
+           removedCar = vehiclesStored.get(vehicleIndex);
+           vehiclesStored.remove(vehicleIndex);
+       }
+       return removedCar;
+    }
+
     private boolean isAccepted(Car vehicle) {
-        if(vehiclesStored.size() == this.maxVehicles){
+        if (vehiclesStored.size() == this.maxVehicles) {
             return false;
-        } else if(vehicleTypes.length != 0) {
+        } else if (vehicleTypes.length != 0) {
             for (String element : vehicleTypes) {
                 if (element.equals(vehicle.getCarModel())) {
                     return true;
                 } else {
                     return false;
                 }
-
             }
-        } else {
-            return true;
         }
+        return true;
     }
 }
